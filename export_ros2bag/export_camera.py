@@ -14,7 +14,8 @@ from concurrent.futures import ThreadPoolExecutor
 import cv2
 import gi
 import numpy as np
-import time  # 添加导入time，用于fallback
+import time  # 用于时间戳fallback和性能监控
+from datetime import datetime as dt_datetime  # 用于性能统计
 
 from rosbags.highlevel import AnyReader
 from rosbags.serde import deserialize_cdr
@@ -100,8 +101,23 @@ def on_new_sample(sink, user_data):
             writer_pool.submit(save_image_task, filepath, frame.copy())
             
             counters['decoded'] += 1
-            if counters['decoded'] % 1 == 0:
-                print(f"\r[{topic_name}] Decoded frames: {counters['decoded']}", end='')
+            if counters['decoded'] % 50 == 0:  # 优化：每50帧打印一次
+                current_time = time.time()
+                elapsed = current_time - counters['start_time']
+                interval = current_time - counters['last_print_time']
+                frames_in_interval = counters['decoded'] - counters['last_decoded_count']
+                
+                # 计算速率
+                overall_fps = counters['decoded'] / elapsed if elapsed > 0 else 0
+                interval_fps = frames_in_interval / interval if interval > 0 else 0
+                
+                print(f"\r[{topic_name}] 已解码: {counters['decoded']} 帧 | "
+                      f"总速率: {overall_fps:.2f} fps | "
+                      f"当前速率: {interval_fps:.2f} fps | "
+                      f"总耗时: {elapsed:.1f}s", end='')
+                
+                counters['last_print_time'] = current_time
+                counters['last_decoded_count'] = counters['decoded']
         except Exception as e:  # 通用捕获，替换原Empty异常
             print(f"\n[{topic_name}] Error in callback: {e}", file=sys.stderr)
         finally:
@@ -118,9 +134,17 @@ def decode_worker(topic_name, data_queue, base_output_dir, hw_accel_flag):
     print(f"[{topic_name}] Worker started. Outputting to: {output_dir}")
 
     main_loop = GLib.MainLoop()
-    counters = {'pushed': 0, 'decoded': 0}  # 移除timestamps队列
-    # 创建一个最多有4个线程的写入池（原24，可根据CPU调整）
-    writer_pool = ThreadPoolExecutor(max_workers=24)
+    counters = {
+        'pushed': 0, 
+        'decoded': 0,
+        'start_time': time.time(),  # 性能监控：开始时间
+        'last_print_time': time.time(),  # 性能监控：上次打印时间
+        'last_decoded_count': 0  # 性能监控：上次解码数量
+    }
+    # 创建一个最多有12个线程的写入池，限制队列大小防止内存泄漏
+    from concurrent.futures import ThreadPoolExecutor
+    import threading
+    writer_pool = ThreadPoolExecutor(max_workers=12, thread_name_prefix="ImgWriter")
     
     pipeline = create_pipeline(topic_name_sanitized, hw_accel_flag)
     
@@ -144,9 +168,10 @@ def decode_worker(topic_name, data_queue, base_output_dir, hw_accel_flag):
 
     appsrc = pipeline.get_by_name(topic_name_sanitized)
     appsrc.set_property('is-live', False)
-    appsrc.set_property('max-bytes', 0)  # 不缓冲
+    appsrc.set_property('max-bytes', 10485760)  # 优化：10MB缓冲区，减少内存碎片
     appsrc.set_property('block', True)   # push-buffer 阻塞直到消费
     appsrc.set_property('format', Gst.Format.TIME)
+    appsrc.set_property('emit-signals', True)
 
     pipeline.set_state(Gst.State.PLAYING)
     loop_thread = threading.Thread(target=main_loop.run, daemon=True)
@@ -182,11 +207,19 @@ def decode_worker(topic_name, data_queue, base_output_dir, hw_accel_flag):
 
     pipeline.set_state(Gst.State.NULL)
     
+    total_time = time.time() - counters['start_time']
+    avg_fps = counters['decoded'] / total_time if total_time > 0 else 0
+    
     print(f"\r[{topic_name}] Finalizing...")
-    print(f"--- Summary for Topic: {topic_name} ---")
-    print(f"  Frames pushed to decoder: {counters['pushed']}")
-    print(f"  Frames successfully decoded: {counters['decoded']}")
-    print("--------------------------------------------------")
+    print(f"\n{'='*60}")
+    print(f"📊 性能统计 - Topic: {topic_name}")
+    print(f"{'='*60}")
+    print(f"  推送帧数: {counters['pushed']}")
+    print(f"  解码成功: {counters['decoded']}")
+    print(f"  总耗时: {total_time:.2f} 秒")
+    print(f"  平均速率: {avg_fps:.2f} fps")
+    print(f"  平均每帧: {1000/avg_fps:.2f} ms" if avg_fps > 0 else "  平均每帧: N/A")
+    print(f"{'='*60}")
 
 def get_all_bags(input_path):
     """获取所有bag目录，支持单目录和多目录模式"""

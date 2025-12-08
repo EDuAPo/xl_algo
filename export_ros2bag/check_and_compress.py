@@ -29,6 +29,7 @@ class FolderCompressor:
         self.keep_folder_name = "undistorted"  # 需要保留的文件夹名
         self.required_free_space_gb = 100  # 所需最小剩余空间（GB）
         self.required_free_space_bytes = self.required_free_space_gb * 1024 * 1024 * 1024  # 转换为字节
+        self.date_prefix = datetime.now().strftime('%Y%m%d')  # 当前日期作为压缩文件前缀
     
     def get_free_disk_space(self, path):
         """获取指定路径所在磁盘的剩余空间（字节）"""
@@ -348,8 +349,9 @@ class FolderCompressor:
     
     def compress_folder(self, target_folder_path):
         """压缩文件夹，并检查压缩包大小"""
-        # 压缩包保存到root_dir下，与目标文件夹同名
-        zip_filename = f"{target_folder_path.name}.zip"
+        # 压缩包保存到root_dir下，格式：YYYYMMDD_原文件夹名.zip
+        # 例如：20251208_103010_104010.zip
+        zip_filename = f"{self.date_prefix}_{target_folder_path.name}.zip"
         zip_path = self.root_dir / zip_filename
         
         # 如果压缩包已存在，直接覆盖（无需确认）

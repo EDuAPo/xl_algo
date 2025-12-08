@@ -230,6 +230,12 @@ class TopicExporter(threading.Thread):
         self.msg_count = 0
         self.fields_printed = False
         
+        # 性能监控
+        self.start_time = datetime.now()
+        self.last_check_time = datetime.now()
+        self.last_check_count = 0
+        self.time_stats = {'deserialize': [], 'read_points': [], 'format': [], 'save': []}
+        
         # 根据格式参数设置子目录名 (pcd_ascii, pcd_binary, bin)
         format_dir = export_format.lower() 
         self.pcd_dir = os.path.join(out_dir, topic_name.strip("/").replace("/", "_"), format_dir)
@@ -250,7 +256,27 @@ class TopicExporter(threading.Thread):
             self.pbar.update(1)
 
         self.pbar.close()
-        print(f"✅ Topic {self.topic_name} 导出完成，共 {self.msg_count} 帧保存至 {self.pcd_dir}")
+        
+        # 计算最终统计
+        total_time = (datetime.now() - self.start_time).total_seconds()
+        avg_fps = self.msg_count / total_time if total_time > 0 else 0
+        
+        avg_stats = {k: sum(v)/len(v) if v else 0 for k, v in self.time_stats.items()}
+        
+        print(f"\n{'='*80}")
+        print(f"🎉 Topic {self.topic_name} 导出完成")
+        print(f"{'='*80}")
+        print(f"  总帧数: {self.msg_count}")
+        print(f"  保存至: {self.pcd_dir}")
+        print(f"  总耗时: {total_time:.2f}秒")
+        print(f"  平均速率: {avg_fps:.2f} fps")
+        print(f"  各阶段平均耗时:")
+        print(f"    - 反序列化: {avg_stats['deserialize']:.2f}ms")
+        print(f"    - 读取点云: {avg_stats['read_points']:.2f}ms")
+        print(f"    - 格式化: {avg_stats['format']:.2f}ms")
+        print(f"    - 保存文件: {avg_stats['save']:.2f}ms")
+        print(f"  每帧平均总耗时: {sum(avg_stats.values()):.2f}ms")
+        print(f"{'='*80}")
 
     def process_message(self, data, t):
         start_time_total = datetime.now() # 开始总计时
@@ -285,15 +311,50 @@ class TopicExporter(threading.Thread):
         save_points(file_base, points_to_save, field_names_to_save, self.export_format) 
         time_save_file = (datetime.now() - start_time).total_seconds() * 1000 # ms
         
-        # 5. 打印详细日志
+        # 5. 收集性能数据
         self.msg_count += 1
-        if self.msg_count <= 5 or self.msg_count % 100 == 0:
+        self.time_stats['deserialize'].append(time_deserialize)
+        self.time_stats['read_points'].append(time_read_points)
+        self.time_stats['format'].append(time_format_data)
+        self.time_stats['save'].append(time_save_file)
+        
+        # 6. 性能监控和变慢检测
+        if self.msg_count % 200 == 0:  # 每200帧检查一次
+            current_time = datetime.now()
+            elapsed = (current_time - self.start_time).total_seconds()
+            interval = (current_time - self.last_check_time).total_seconds()
+            frames_in_interval = self.msg_count - self.last_check_count
+            
+            overall_fps = self.msg_count / elapsed if elapsed > 0 else 0
+            interval_fps = frames_in_interval / interval if interval > 0 else 0
+            
+            # 计算最近200帧的平均耗时
+            recent_stats = {k: sum(v[-200:])/len(v[-200:]) if v[-200:] else 0 for k, v in self.time_stats.items()}
+            
             time_total = (datetime.now() - start_time_total).total_seconds() * 1000
-            print(f"\n[LOG] {self.topic_name} Frame {self.msg_count} ({len(points_to_save)} pts) | Total: {time_total:.2f}ms")
-            print(f"  > 1. Deserialize: {time_deserialize:.2f}ms")
-            print(f"  > 2. Read Points (NP): {time_read_points:.2f}ms (主要瓶颈)")
-            print(f"  > 3. Format Data (NP Col): {time_format_data:.2f}ms (已优化)")
-            print(f"  > 4. Save File ({self.export_format.upper()}): {time_save_file:.2f}ms")
+            print(f"\n{'='*80}")
+            print(f"📊 [{self.topic_name}] 性能检测 - 第 {self.msg_count} 帧")
+            print(f"{'='*80}")
+            print(f"  当前帧 ({len(points_to_save)} pts): {time_total:.2f}ms")
+            print(f"  最近200帧平均:")
+            print(f"    - 反序列化: {recent_stats['deserialize']:.2f}ms")
+            print(f"    - 读取点云: {recent_stats['read_points']:.2f}ms")
+            print(f"    - 格式化: {recent_stats['format']:.2f}ms")
+            print(f"    - 保存文件: {recent_stats['save']:.2f}ms")
+            print(f"    - 合计平均: {sum(recent_stats.values()):.2f}ms")
+            print(f"  处理速率:")
+            print(f"    - 总体速率: {overall_fps:.2f} fps")
+            print(f"    - 当前区间: {interval_fps:.2f} fps")
+            print(f"  总耗时: {elapsed:.1f}s")
+            
+            # 变慢警告
+            if self.msg_count > 400 and interval_fps < overall_fps * 0.7:
+                print(f"  ⚠️  警告: 处理速度下降 {((1 - interval_fps/overall_fps) * 100):.1f}%")
+            
+            print(f"{'='*80}")
+            
+            self.last_check_time = current_time
+            self.last_check_count = self.msg_count
 
 
 # --- 核心函数：统一读取并分发消息 (保持不变) ---
@@ -364,7 +425,7 @@ def export_one_bag(bag_path, out_dir, export_format):
                 pbar_read.update(1)
             
             # 打印主线程读取耗时 (仅对前几帧或定期打印)
-            if total_messages_read <= 5 or total_messages_read % 100 == 0:
+            if total_messages_read <= 5 or total_messages_read % 500 == 0:  # 优化：降低至每500帧
                  print(f"[LOG] Main Thread Read Frame {total_messages_read} | Read/Dispatch Time: {read_time:.2f}ms")
 
     # 5. 发送停止信号并等待所有线程完成

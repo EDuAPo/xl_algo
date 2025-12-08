@@ -21,9 +21,9 @@ if str(workspace_dir) not in sys.path:
 from config.lidar_calibrator import LIDAR_CONFIGS, get_lidar_extrinsics_config_id
 from config.camera_calibrator import get_camera_extrinsics
 
-# 设置进程池的最大工作进程数（默认使用CPU核心数）
-MAX_WORKERS = multiprocessing.cpu_count()
-# 如果CPU核心数太多，可以手动限制，例如：MAX_WORKERS = 4
+# 设置进程池的最大工作进程数（优化：限制为CPU核心数的75%，减少竞争）
+MAX_WORKERS = max(1, int(multiprocessing.cpu_count() * 0.75))
+# 避免过多进程导致I/O和内存竞争，提升整体吞吐量
 
 def undistort_fish_optimized(img_path, K, D, DIM, is_fish, scale=0.5):
     """鱼眼相机去畸变（保持原有实现）"""
@@ -648,12 +648,22 @@ def process_single_direction(
                             json.dump(res_json_entries, f, indent=4, ensure_ascii=False)
                         print(f"[进程 {os.getpid()}]   - 已生成{res_name}传感器配置JSON: {res_json_path}")
             
-            print(f"--- [进程 {os.getpid()}] scale = {scale} 处理完成 ---")
+            scale_time = (datetime.now() - scale_start_time).total_seconds() if 'scale_start_time' in locals() else 0
+            print(f"--- [进程 {os.getpid()}] scale = {scale} 处理完成 (耗时: {scale_time:.2f}秒) ---")
             
     except Exception as e:
         print(f"[进程 {os.getpid()}] 处理 {direction} 方向时出错: {str(e)}")
         import traceback
         traceback.print_exc()
+    
+    # 输出方向处理总耗时
+    direction_total_time = (datetime.now() - direction_start_time).total_seconds()
+    print(f"\n{'='*60}")
+    print(f"✅ [进程 {os.getpid()}] {direction} 方向处理完成")
+    print(f"   总耗时: {direction_total_time:.2f}秒 ({direction_total_time/60:.2f}分钟)")
+    print(f"   处理scale数: {len(scales)}")
+    print(f"   平均每scale: {direction_total_time/len(scales):.2f}秒" if scales else "")
+    print(f"{'='*60}\n")
     
     return direction_camera_entries
 
@@ -694,11 +704,21 @@ def process_all_directions(
     # 用于存储所有方向的相机条目
     scale_camera_entries = defaultdict(list)
     
+    # 性能监控：整体处理开始时间
+    overall_start_time = datetime.now()
+    print(f"\n{'='*80}")
+    print(f"🚀 开始并行处理，进程数: {MAX_WORKERS}")
+    print(f"{'='*80}\n")
+    
     # 使用进程池并行处理每个方向文件夹
     with ProcessPoolExecutor(max_workers=MAX_WORKERS) as executor:
         # 提交所有任务
         future_to_direction = {}
+        task_start_times = {}  # 记录每个任务的开始时间
+        completed_count = 0  # 已完成的方向数
+        
         for direction_info in direction_folders:
+            task_start = datetime.now()
             future = executor.submit(
                 process_single_direction,
                 direction_info=direction_info,
@@ -712,23 +732,45 @@ def process_all_directions(
                 logtime=logtime # 传递 logtime 参数
             )
             future_to_direction[future] = direction_info[1]  # 存储方向名称
+            task_start_times[future] = task_start  # 记录开始时间
         
         # 处理完成的任务
         for future in as_completed(future_to_direction):
             direction_name = future_to_direction[future]
+            task_time = (datetime.now() - task_start_times[future]).total_seconds()
+            completed_count += 1
+            
             try:
                 # 获取该方向的处理结果（相机条目字典）
                 direction_entries = future.result()
                 # 合并到全局的相机条目字典中
                 for scale, entries in direction_entries.items():
                     scale_camera_entries[scale].extend(entries)
-                print(f"\n{'='*50}")
-                print(f"方向 {direction_name} 并行处理完成！")
-                print(f"{'='*50}")
+                
+                elapsed_overall = (datetime.now() - overall_start_time).total_seconds()
+                print(f"\n{'='*60}")
+                print(f"✅ 方向 {direction_name} 并行处理完成！")
+                print(f"   进度: {completed_count}/{len(direction_folders)}")
+                print(f"   该任务耗时: {task_time:.2f}秒")
+                print(f"   总体进度: {elapsed_overall:.1f}秒 ({elapsed_overall/60:.1f}分钟)")
+                print(f"{'='*60}")
             except Exception as e:
-                print(f"\n{'='*50}")
-                print(f"方向 {direction_name} 并行处理失败: {str(e)}")
-                print(f"{'='*50}")
+                print(f"\n{'='*60}")
+                print(f"❌ 方向 {direction_name} 并行处理失败: {str(e)}")
+                print(f"   进度: {completed_count}/{len(direction_folders)}")
+                print(f"   该任务耗时: {task_time:.2f}秒")
+                print(f"{'='*60}")
+    
+    # 输出总体性能统计
+    overall_time = (datetime.now() - overall_start_time).total_seconds()
+    print(f"\n{'='*80}")
+    print(f"🎉 所有方向处理完成！")
+    print(f"{'='*80}")
+    print(f"  总方向数: {len(direction_folders)}")
+    print(f"  总耗时: {overall_time:.2f}秒 ({overall_time/60:.2f}分钟)")
+    print(f"  平均每方向: {overall_time/len(direction_folders):.2f}秒" if direction_folders else "")
+    print(f"  并行进程数: {MAX_WORKERS}")
+    print(f"{'='*80}\n")
     
     # 为每个scale生成总和JSON文件
     print(f"\n{'='*50}")
