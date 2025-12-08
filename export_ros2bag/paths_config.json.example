@@ -1,0 +1,8 @@
+{
+  "source_directory": "/media/xl/T7/1204/rosbag2_2025_12_04-10_42_08/",
+  "output_root_directory": "/media/xl/T7/1204_out1/",
+  "main_out": "/media/xl/T7/1204_out/",
+  "move_record_dir": "/media/xl/T7/1204_out/",
+  "_comment": "此文件由 config_paths.py 自动生成和管理",
+  "_usage": "可以手动编辑此文件来修改路径配置，或使用命令: python config_paths.py --set-source /path/to/source"
+}
