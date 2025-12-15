@@ -1,0 +1,8 @@
+/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_adapter/imu_msgs:msg/ASENSING.idl
+/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_adapter/imu_msgs:msg/Imu.idl
+/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_adapter/imu_msgs:msg/ImuInitial.idl
+/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_adapter/imu_msgs:msg/Gnss.idl
+/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_adapter/imu_msgs:msg/Imu04.idl
+/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_adapter/imu_msgs:msg/Imu0A.idl
+/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_adapter/imu_msgs:msg/Imu8B.idl
+/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_adapter/imu_msgs:msg/Odom.idl

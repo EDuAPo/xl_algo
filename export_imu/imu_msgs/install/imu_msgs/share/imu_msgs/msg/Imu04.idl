@@ -1,0 +1,57 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from imu_msgs/msg/Imu04.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module imu_msgs {
+  module msg {
+    typedef uint8 uint8__14[14];
+    struct Imu04 {
+      std_msgs::msg::Header header;
+
+      float roll;
+
+      float pitch;
+
+      float yaw;
+
+      float gx;
+
+      float gy;
+
+      float gz;
+
+      float ax;
+
+      float ay;
+
+      float az;
+
+      float temperature;
+
+      float time;
+
+      uint8__14 gps_message;
+
+      uint8 gps_heading_status;
+
+      uint8 ptype;
+
+      uint16 pdata;
+
+      float ver_pos;
+
+      float ver_vel;
+
+      uint16 info_byte;
+
+      @verbatim (language="comment", text=
+        "0x00:deinit" "\n"
+        "0x01:动中通版本数据帧" "\n"
+        "0x02:VG版本数据帧" "\n"
+        "0x03:升沉版本数据帧")
+      uint8 msg_type;
+    };
+  };
+};

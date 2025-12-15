@@ -1,0 +1,33 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from imu_msgs/msg/Imu0A.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module imu_msgs {
+  module msg {
+    struct Imu0A {
+      std_msgs::msg::Header header;
+
+      float gx;
+
+      float gy;
+
+      float gz;
+
+      float ax;
+
+      float ay;
+
+      float az;
+
+      float temperature;
+
+      double imu_time_stamp;
+
+      uint8 status;
+
+      uint16 frame_count;
+    };
+  };
+};

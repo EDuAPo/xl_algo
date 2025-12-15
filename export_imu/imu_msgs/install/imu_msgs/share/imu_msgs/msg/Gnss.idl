@@ -1,0 +1,79 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from imu_msgs/msg/Gnss.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module imu_msgs {
+  module msg {
+    struct Gnss {
+      std_msgs::msg::Header header;
+
+      double longitude;
+
+      float lon_sigma;
+
+      double latitude;
+
+      float lat_sigma;
+
+      double altitude;
+
+      float alt_sigma;
+
+      uint16 gps_fix;
+
+      uint16 rtk_age;
+
+      uint8 flags_pos;
+
+      uint8 flags_vel;
+
+      uint8 flags_attitude;
+
+      uint8 flags_time;
+
+      float hor_vel;
+
+      float track_angle;
+
+      float ver_vel;
+
+      float latency_vel;
+
+      float base_length;
+
+      float yaw;
+
+      float yaw_sigma;
+
+      float pitch;
+
+      float pitch_sigma;
+
+      string utc_time;
+
+      uint32 ts_pos;
+
+      uint32 ts_vel;
+
+      uint32 ts_heading;
+
+      uint8 state;
+
+      uint8 num_master;
+
+      float gdop;
+
+      float pdop;
+
+      float hdop;
+
+      float htdop;
+
+      float tdop;
+
+      uint8 num_reserve;
+    };
+  };
+};

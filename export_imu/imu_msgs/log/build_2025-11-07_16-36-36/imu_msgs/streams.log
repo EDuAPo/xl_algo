@@ -1,0 +1,443 @@
+[0.007s] Invoking command in '/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs': /usr/bin/cmake /home/shucdong/workspace/xl/imu_parser/imu_msgs -DCMAKE_INSTALL_PREFIX=/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs
+[0.036s] -- The C compiler identification is GNU 11.4.0
+[0.065s] -- The CXX compiler identification is GNU 11.4.0
+[0.068s] -- Detecting C compiler ABI info
+[0.105s] -- Detecting C compiler ABI info - done
+[0.109s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.109s] -- Detecting C compile features
+[0.109s] -- Detecting C compile features - done
+[0.111s] -- Detecting CXX compiler ABI info
+[0.155s] -- Detecting CXX compiler ABI info - done
+[0.160s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.160s] -- Detecting CXX compile features
+[0.160s] -- Detecting CXX compile features - done
+[0.162s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.236s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.275s] -- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+[0.288s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.289s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.294s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.298s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.304s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.315s] -- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.351s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.476s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[0.654s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.723s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.734s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[0.735s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[0.749s] -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[0.749s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.749s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[0.749s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[0.760s] -- Found PythonExtra: .so  
+[0.782s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.785s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.785s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_generator_c>;$<BUILD_INTERFACE:/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_typesupport_fastrtps_c>;$<BUILD_INTERFACE:/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_generator_cpp>;$<BUILD_INTERFACE:/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_typesupport_fastrtps_cpp>;$<BUILD_INTERFACE:/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_typesupport_introspection_c>;$<BUILD_INTERFACE:/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_typesupport_introspection_cpp>;/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_generator_c;/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs/rosidl_generator_py
+[0.785s] -- Configured cppcheck exclude dirs and/or files: 
+[0.787s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.787s] -- Configured cpplint exclude dirs and/or files: 
+[0.788s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.789s] -- Added test 'lint_cmake' to check CMake code style
+[0.789s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.791s] -- Added test 'uncrustify' to check C / C++ code style
+[0.791s] -- Configured uncrustify additional arguments: 
+[0.791s] -- Added test 'xmllint' to check XML markup files
+[0.793s] -- Configuring done
+[0.824s] -- Generating done
+[0.831s] -- Build files have been written to: /home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs
+[0.835s] Invoked command in '/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs' returned '0': /usr/bin/cmake /home/shucdong/workspace/xl/imu_parser/imu_msgs -DCMAKE_INSTALL_PREFIX=/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs
+[0.838s] Invoking command in '/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs': /usr/bin/cmake --build /home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs -- -j24 -l24
+[0.860s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[0.867s] [  2%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[0.872s] [  2%] Built target ament_cmake_python_copy_imu_msgs
+[1.009s] running egg_info
+[1.010s] creating imu_msgs.egg-info
+[1.010s] writing imu_msgs.egg-info/PKG-INFO
+[1.010s] writing dependency_links to imu_msgs.egg-info/dependency_links.txt
+[1.010s] writing top-level names to imu_msgs.egg-info/top_level.txt
+[1.010s] writing manifest file 'imu_msgs.egg-info/SOURCES.txt'
+[1.011s] reading manifest file 'imu_msgs.egg-info/SOURCES.txt'
+[1.012s] writing manifest file 'imu_msgs.egg-info/SOURCES.txt'
+[1.031s] [  2%] Built target ament_cmake_python_build_imu_msgs_egg
+[1.390s] [  3%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_c.dir/rosidl_generator_c/imu_msgs/msg/detail/asensing__functions.c.o[0m
+[1.390s] [  5%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_c.dir/rosidl_generator_c/imu_msgs/msg/detail/imu_initial__functions.c.o[0m
+[1.390s] [  5%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_c.dir/rosidl_generator_c/imu_msgs/msg/detail/imu__functions.c.o[0m
+[1.392s] [  6%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_c.dir/rosidl_generator_c/imu_msgs/msg/detail/imu04__functions.c.o[0m
+[1.392s] [  8%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_c.dir/rosidl_generator_c/imu_msgs/msg/detail/imu0_a__functions.c.o[0m
+[1.392s] [  9%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_c.dir/rosidl_generator_c/imu_msgs/msg/detail/odom__functions.c.o[0m
+[1.392s] [ 10%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_c.dir/rosidl_generator_c/imu_msgs/msg/detail/gnss__functions.c.o[0m
+[1.393s] [ 11%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_c.dir/rosidl_generator_c/imu_msgs/msg/detail/imu8_b__functions.c.o[0m
+[1.395s] [ 11%] Built target imu_msgs__cpp
+[1.405s] [ 12%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[1.406s] [ 13%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[1.408s] [ 14%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[1.444s] [ 16%] [32m[1mLinking C shared library libimu_msgs__rosidl_generator_c.so[0m
+[1.474s] [ 16%] Built target imu_msgs__rosidl_generator_c
+[1.483s] [ 18%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[1.483s] [ 18%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[1.483s] [ 19%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[1.891s] [ 20%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/imu_msgs/msg/asensing__type_support.cpp.o[0m
+[1.891s] [ 24%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/imu_msgs/msg/imu__type_support.cpp.o[0m
+[1.891s] [ 24%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/imu_msgs/msg/imu_initial__type_support.cpp.o[0m
+[1.891s] [ 24%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/imu_msgs/msg/imu0_a__type_support.cpp.o[0m
+[1.892s] [ 25%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/imu_msgs/msg/gnss__type_support.cpp.o[0m
+[1.892s] [ 26%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/imu_msgs/msg/imu04__type_support.cpp.o[0m
+[1.892s] [ 27%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/imu_msgs/msg/imu8_b__type_support.cpp.o[0m
+[1.893s] [ 28%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/imu_msgs/msg/odom__type_support.cpp.o[0m
+[2.008s] [ 31%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/imu_msgs/msg/detail/imu_initial__type_support.cpp.o[0m
+[2.008s] [ 31%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/imu_msgs/msg/detail/imu__type_support.cpp.o[0m
+[2.008s] [ 32%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/imu_msgs/msg/detail/asensing__type_support.cpp.o[0m
+[2.009s] [ 33%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/imu_msgs/msg/detail/gnss__type_support.cpp.o[0m
+[2.012s] [ 34%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/imu_msgs/msg/detail/imu04__type_support.cpp.o[0m
+[2.016s] [ 36%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/imu_msgs/msg/detail/imu8_b__type_support.cpp.o[0m
+[2.016s] [ 36%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/imu_msgs/msg/detail/odom__type_support.cpp.o[0m
+[2.016s] [ 37%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/imu_msgs/msg/detail/imu0_a__type_support.cpp.o[0m
+[2.038s] [ 40%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/imu_msgs/msg/asensing__type_support.cpp.o[0m
+[2.038s] [ 40%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/imu_msgs/msg/imu__type_support.cpp.o[0m
+[2.041s] [ 41%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/imu_msgs/msg/gnss__type_support.cpp.o[0m
+[2.041s] [ 43%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/imu_msgs/msg/imu_initial__type_support.cpp.o[0m
+[2.041s] [ 43%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/imu_msgs/msg/imu04__type_support.cpp.o[0m
+[2.092s] [ 44%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/imu_msgs/msg/odom__type_support.cpp.o[0m
+[2.094s] [ 47%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/imu_msgs/msg/imu0_a__type_support.cpp.o[0m
+[2.094s] [ 47%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/imu_msgs/msg/imu8_b__type_support.cpp.o[0m
+[2.154s] [ 48%] [32m[1mLinking CXX shared library libimu_msgs__rosidl_typesupport_c.so[0m
+[2.198s] [ 49%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/imu_msgs/msg/detail/dds_fastrtps/asensing__type_support.cpp.o[0m
+[2.199s] [ 50%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/imu_msgs/msg/detail/dds_fastrtps/imu__type_support.cpp.o[0m
+[2.205s] [ 51%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/imu_msgs/msg/detail/dds_fastrtps/imu04__type_support.cpp.o[0m
+[2.205s] [ 52%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/imu_msgs/msg/detail/dds_fastrtps/imu_initial__type_support.cpp.o[0m
+[2.206s] [ 54%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/imu_msgs/msg/detail/dds_fastrtps/imu0_a__type_support.cpp.o[0m
+[2.209s] [ 55%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/imu_msgs/msg/detail/dds_fastrtps/gnss__type_support.cpp.o[0m
+[2.209s] [ 56%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/imu_msgs/msg/detail/dds_fastrtps/imu8_b__type_support.cpp.o[0m
+[2.212s] [ 57%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/imu_msgs/msg/detail/imu__type_support.c.o[0m
+[2.212s] [ 58%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/imu_msgs/msg/detail/asensing__type_support.c.o[0m
+[2.228s] [ 59%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/imu_msgs/msg/detail/imu_initial__type_support.c.o[0m
+[2.231s] [ 60%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/imu_msgs/msg/detail/asensing__type_support_c.cpp.o[0m
+[2.237s] [ 60%] Built target imu_msgs__rosidl_typesupport_c
+[2.253s] [ 62%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/imu_msgs/msg/detail/gnss__type_support.c.o[0m
+[2.272s] [ 63%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/imu_msgs/msg/detail/imu04__type_support.c.o[0m
+[2.284s] [ 64%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/imu_msgs/msg/detail/imu0_a__type_support.c.o[0m
+[2.289s] [ 65%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/imu_msgs/msg/detail/imu8_b__type_support.c.o[0m
+[2.299s] [ 66%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/imu_msgs/msg/detail/odom__type_support.c.o[0m
+[2.325s] [ 67%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/imu_msgs/msg/detail/dds_fastrtps/odom__type_support.cpp.o[0m
+[2.330s] [ 68%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/imu_msgs/msg/detail/imu__type_support_c.cpp.o[0m
+[2.353s] [ 71%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/imu_msgs/msg/detail/imu04__type_support_c.cpp.o[0m
+[2.353s] [ 70%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/imu_msgs/msg/detail/gnss__type_support_c.cpp.o[0m
+[2.358s] [ 72%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/imu_msgs/msg/detail/imu0_a__type_support_c.cpp.o[0m
+[2.364s] [ 74%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/imu_msgs/msg/detail/imu_initial__type_support_c.cpp.o[0m
+[2.366s] [ 74%] [32m[1mLinking C shared library libimu_msgs__rosidl_typesupport_introspection_c.so[0m
+[2.401s] [ 75%] [32m[1mLinking CXX shared library libimu_msgs__rosidl_typesupport_cpp.so[0m
+[2.442s] [ 75%] Built target imu_msgs__rosidl_typesupport_introspection_c
+[2.460s] [ 77%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/imu_msgs/msg/detail/imu8_b__type_support_c.cpp.o[0m
+[2.477s] [ 77%] Built target imu_msgs__rosidl_typesupport_cpp
+[2.492s] [ 78%] [32mBuilding CXX object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/imu_msgs/msg/detail/odom__type_support_c.cpp.o[0m
+[2.780s] [ 79%] [32m[1mLinking CXX shared library libimu_msgs__rosidl_typesupport_introspection_cpp.so[0m
+[2.873s] [ 79%] Built target imu_msgs__rosidl_typesupport_introspection_cpp
+[2.965s] [ 81%] [32m[1mLinking CXX shared library libimu_msgs__rosidl_typesupport_fastrtps_cpp.so[0m
+[2.966s] [ 81%] [32m[1mLinking CXX shared library libimu_msgs__rosidl_typesupport_fastrtps_c.so[0m
+[3.014s] [ 81%] Built target imu_msgs__rosidl_typesupport_fastrtps_c
+[3.014s] [ 81%] Built target imu_msgs__rosidl_typesupport_fastrtps_cpp
+[3.025s] [ 81%] Built target imu_msgs
+[3.036s] [ 82%] [34m[1mGenerating Python code for ROS interfaces[0m
+[3.738s] [ 82%] Built target imu_msgs__py
+[3.752s] [ 83%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_py.dir/rosidl_generator_py/imu_msgs/msg/_imu_initial_s.c.o[0m
+[3.752s] [ 85%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_py.dir/rosidl_generator_py/imu_msgs/msg/_imu_s.c.o[0m
+[3.752s] [ 86%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_py.dir/rosidl_generator_py/imu_msgs/msg/_asensing_s.c.o[0m
+[3.752s] [ 87%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_py.dir/rosidl_generator_py/imu_msgs/msg/_gnss_s.c.o[0m
+[3.752s] [ 88%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_py.dir/rosidl_generator_py/imu_msgs/msg/_imu04_s.c.o[0m
+[3.752s] [ 89%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_py.dir/rosidl_generator_py/imu_msgs/msg/_imu8_b_s.c.o[0m
+[3.753s] [ 90%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_py.dir/rosidl_generator_py/imu_msgs/msg/_odom_s.c.o[0m
+[3.755s] [ 91%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_generator_py.dir/rosidl_generator_py/imu_msgs/msg/_imu0_a_s.c.o[0m
+[3.845s] [ 93%] [32m[1mLinking C shared library rosidl_generator_py/imu_msgs/libimu_msgs__rosidl_generator_py.so[0m
+[3.868s] [ 93%] Built target imu_msgs__rosidl_generator_py
+[3.880s] [ 94%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/imu_msgs/_imu_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[3.880s] [ 96%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/imu_msgs/_imu_msgs_s.ep.rosidl_typesupport_c.c.o[0m
+[3.880s] [ 96%] [32mBuilding C object CMakeFiles/imu_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/imu_msgs/_imu_msgs_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[3.946s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/imu_msgs/imu_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[3.946s] [100%] [32m[1mLinking C shared library rosidl_generator_py/imu_msgs/imu_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[3.946s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/imu_msgs/imu_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[3.969s] [100%] Built target imu_msgs__rosidl_typesupport_fastrtps_c__pyext
+[3.969s] [100%] Built target imu_msgs__rosidl_typesupport_introspection_c__pyext
+[3.969s] [100%] Built target imu_msgs__rosidl_typesupport_c__pyext
+[3.977s] Invoked command in '/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs' returned '0': /usr/bin/cmake --build /home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs -- -j24 -l24
+[3.985s] Invoking command in '/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs': /usr/bin/cmake --install /home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs
+[3.989s] -- Install configuration: ""
+[3.989s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/ament_index/resource_index/rosidl_interfaces/imu_msgs
+[3.989s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs
+[3.989s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg
+[3.989s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu8_b.h
+[3.989s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu_initial.h
+[3.989s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu04.h
+[3.989s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/gnss.h
+[3.989s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/odom.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__struct.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__struct.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__functions.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__functions.c
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__functions.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__functions.c
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__functions.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__functions.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__type_support.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__type_support.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__functions.c
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__functions.c
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__struct.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__functions.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__struct.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__functions.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__type_support.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__struct.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__functions.c
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__functions.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__struct.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__struct.h
+[3.990s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__type_support.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__struct.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__type_support.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__type_support.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__type_support.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__functions.c
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__functions.c
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__functions.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__functions.c
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__type_support.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/rosidl_generator_c__visibility_control.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu0_a.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/asensing.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/environment/library_path.sh
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/environment/library_path.dsv
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_generator_c.so
+[3.991s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_generator_c.so" to ""
+[3.991s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs
+[3.991s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg
+[3.991s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__rosidl_typesupport_fastrtps_c.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__rosidl_typesupport_fastrtps_c.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__rosidl_typesupport_fastrtps_c.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__rosidl_typesupport_fastrtps_c.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__rosidl_typesupport_fastrtps_c.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__rosidl_typesupport_fastrtps_c.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__rosidl_typesupport_fastrtps_c.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__rosidl_typesupport_fastrtps_c.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_fastrtps_c.so
+[3.991s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+[3.991s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs
+[3.991s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu.hpp
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/gnss.hpp
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/asensing.hpp
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu0_a.hpp
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu8_b.hpp
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu_initial.hpp
+[3.991s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/imu04.hpp
+[3.991s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__type_support.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__builder.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__traits.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__traits.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__traits.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__traits.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__type_support.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__builder.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__struct.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__struct.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__struct.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__traits.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__struct.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__builder.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__type_support.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__type_support.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__type_support.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__builder.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__builder.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__struct.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__type_support.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__struct.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__traits.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__builder.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__traits.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__struct.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__type_support.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__builder.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__type_support.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__traits.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__struct.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__builder.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/odom.hpp
+[3.992s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[3.992s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs
+[3.992s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[3.993s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__rosidl_typesupport_fastrtps_cpp.hpp
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__rosidl_typesupport_fastrtps_cpp.hpp
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__rosidl_typesupport_fastrtps_cpp.hpp
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/dds_fastrtps
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__rosidl_typesupport_fastrtps_cpp.hpp
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__rosidl_typesupport_fastrtps_cpp.hpp
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__rosidl_typesupport_fastrtps_cpp.hpp
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__rosidl_typesupport_fastrtps_cpp.hpp
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__rosidl_typesupport_fastrtps_cpp.hpp
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_fastrtps_cpp.so
+[3.993s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+[3.993s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs
+[3.993s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[3.993s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__type_support.c
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__rosidl_typesupport_introspection_c.h
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__type_support.c
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__type_support.c
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__rosidl_typesupport_introspection_c.h
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__type_support.c
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__rosidl_typesupport_introspection_c.h
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__type_support.c
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__type_support.c
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__type_support.c
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__rosidl_typesupport_introspection_c.h
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__rosidl_typesupport_introspection_c.h
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__rosidl_typesupport_introspection_c.h
+[3.993s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__type_support.c
+[3.994s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__rosidl_typesupport_introspection_c.h
+[3.994s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__rosidl_typesupport_introspection_c.h
+[3.994s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_introspection_c.so
+[3.994s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_introspection_c.so" to ""
+[3.994s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_c.so
+[3.994s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_c.so" to ""
+[3.995s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs
+[3.995s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg
+[3.995s] -- Up-to-date: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__type_support.cpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__type_support.cpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__type_support.cpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__rosidl_typesupport_introspection_cpp.hpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__type_support.cpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/odom__type_support.cpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu8_b__rosidl_typesupport_introspection_cpp.hpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__type_support.cpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu0_a__rosidl_typesupport_introspection_cpp.hpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu_initial__rosidl_typesupport_introspection_cpp.hpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__type_support.cpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__type_support.cpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu__rosidl_typesupport_introspection_cpp.hpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/asensing__rosidl_typesupport_introspection_cpp.hpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/imu04__rosidl_typesupport_introspection_cpp.hpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/include/imu_msgs/imu_msgs/msg/detail/gnss__rosidl_typesupport_introspection_cpp.hpp
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_introspection_cpp.so
+[3.995s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_cpp.so
+[3.995s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_typesupport_cpp.so" to ""
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/environment/pythonpath.sh
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/environment/pythonpath.dsv
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs-0.0.0-py3.10.egg-info
+[3.995s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs-0.0.0-py3.10.egg-info/top_level.txt
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs-0.0.0-py3.10.egg-info/PKG-INFO
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs-0.0.0-py3.10.egg-info/dependency_links.txt
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs-0.0.0-py3.10.egg-info/SOURCES.txt
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_asensing.py
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu.py
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu8_b.py
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_odom_s.c
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu8_b_s.c
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu04.py
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu_s.c
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu04_s.c
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_gnss.py
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/__init__.py
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_odom.py
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu_initial.py
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_asensing_s.c
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu0_a.py
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_gnss_s.c
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu_initial_s.c
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu0_a_s.c
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/imu_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[3.996s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/libimu_msgs__rosidl_generator_py.so
+[3.997s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/_imu_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[3.997s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/_imu_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[3.997s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/__init__.py
+[3.997s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/_imu_msgs_s.ep.rosidl_typesupport_c.c
+[3.997s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/imu_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[3.997s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/imu_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[4.025s] Listing '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/__init__.py'...
+[4.025s] Listing '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/__init__.py'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_asensing.py'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_gnss.py'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu.py'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu04.py'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu0_a.py'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu8_b.py'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_imu_initial.py'...
+[4.025s] Compiling '/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/msg/_odom.py'...
+[4.028s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/imu_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[4.028s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/imu_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""
+[4.028s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/imu_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[4.028s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/imu_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""
+[4.028s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/imu_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[4.028s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/local/lib/python3.10/dist-packages/imu_msgs/imu_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""
+[4.028s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_generator_py.so
+[4.029s] -- Set runtime path of "/home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/lib/libimu_msgs__rosidl_generator_py.so" to ""
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/ASENSING.idl
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Imu.idl
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/ImuInitial.idl
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Gnss.idl
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Imu04.idl
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Imu0A.idl
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Imu8B.idl
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Odom.idl
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/ASENSING.msg
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Imu.msg
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/ImuInitial.msg
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Gnss.msg
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Imu04.msg
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Imu0A.msg
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Imu8B.msg
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/msg/Odom.msg
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/ament_index/resource_index/package_run_dependencies/imu_msgs
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/ament_index/resource_index/parent_prefix_path/imu_msgs
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/environment/ament_prefix_path.sh
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/environment/ament_prefix_path.dsv
+[4.029s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/environment/path.sh
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/environment/path.dsv
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/local_setup.bash
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/local_setup.sh
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/local_setup.zsh
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/local_setup.dsv
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/package.dsv
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/ament_index/resource_index/packages/imu_msgs
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/export_imu_msgs__rosidl_generator_cExport.cmake
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/export_imu_msgs__rosidl_generator_cExport-noconfig.cmake
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/export_imu_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/export_imu_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/export_imu_msgs__rosidl_generator_cppExport.cmake
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/export_imu_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[4.030s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/export_imu_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgs__rosidl_typesupport_introspection_cExport.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgs__rosidl_typesupport_cExport.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgs__rosidl_typesupport_cppExport.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/export_imu_msgs__rosidl_generator_pyExport.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/export_imu_msgs__rosidl_generator_pyExport-noconfig.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/rosidl_cmake-extras.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgsConfig.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/cmake/imu_msgsConfig-version.cmake
+[4.031s] -- Installing: /home/shucdong/workspace/xl/imu_parser/imu_msgs/install/imu_msgs/share/imu_msgs/package.xml
+[4.032s] Invoked command in '/home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs' returned '0': /usr/bin/cmake --install /home/shucdong/workspace/xl/imu_parser/imu_msgs/build/imu_msgs

@@ -1,0 +1,25 @@
+# 科学计算和地理空间
+numpy==2.2.6
+pyproj==3.7.1
+scipy==1.8.0  # **注意：虽然您看到了冲突警告，但 pip 还是安装了它。
+               # 部署时，请确保目标机器上的 Scipy 是最新且兼容 numpy 2.x 的版本。
+               # 最好先用 pip install --upgrade scipy 解决冲突后再 freeze。**
+
+# 计算机视觉和进度条
+opencv-python==4.12.0.88
+tqdm==4.67.1
+
+# ROS Bag工具依赖
+rosbags==0.10.11
+lz4==4.4.5
+ruamel.yaml==0.18.16
+zstandard==0.25.0
+
+# GStreamer/GUI 依赖
+pycairo==1.29.0
+pygobject==3.42.1
+
+# 自动安装的基础包 (保留以确保环境一致性)
+certifi==2025.11.12
+typing-extensions==4.15.0
+# ...

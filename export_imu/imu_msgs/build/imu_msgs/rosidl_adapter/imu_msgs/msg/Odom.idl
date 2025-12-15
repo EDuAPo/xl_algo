@@ -1,0 +1,95 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from imu_msgs/msg/Odom.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module imu_msgs {
+  module msg {
+    struct Odom {
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "四元数q0~q3")
+      float q0_w;
+
+      float q1_x;
+
+      float q2_y;
+
+      float q3_z;
+
+      @verbatim (language="comment", text=
+        "位置坐标")
+      float pos_x;
+
+      float pos_y;
+
+      float pos_z;
+
+      @verbatim (language="comment", text=
+        "速度")
+      float vel_x;
+
+      float vel_y;
+
+      float vel_z;
+
+      @verbatim (language="comment", text=
+        "XYZ3个方向合速度")
+      float vel;
+
+      @verbatim (language="comment", text=
+        "角速度")
+      float ang_vel_x;
+
+      float ang_vel_y;
+
+      float ang_vel_z;
+
+      @verbatim (language="comment", text=
+        "加速度")
+      float acc_x;
+
+      float acc_y;
+
+      float acc_z;
+
+      @verbatim (language="comment", text=
+        "odom状态")
+      uint8 status;
+
+      @verbatim (language="comment", text=
+        "传感器状态")
+      uint32 sensor_status;
+
+      @verbatim (language="comment", text=
+        "位置信息精度")
+      float pos_x_std;
+
+      float pos_y_std;
+
+      float pos_z_std;
+
+      @verbatim (language="comment", text=
+        "速度信息精度")
+      float vel_x_std;
+
+      float vel_y_std;
+
+      float vel_z_std;
+
+      @verbatim (language="comment", text=
+        "姿态信息精度")
+      float roll_std;
+
+      float pitch_std;
+
+      float yaw_std;
+
+      @verbatim (language="comment", text=
+        "周内秒毫秒")
+      uint32 tow_ms;
+    };
+  };
+};

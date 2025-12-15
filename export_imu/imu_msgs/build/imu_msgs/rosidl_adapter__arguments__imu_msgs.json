@@ -1,0 +1,13 @@
+{
+  "package_name": "imu_msgs",
+  "non_idl_tuples": [
+    "/home/shucdong/workspace/xl/imu_parser/imu_msgs:msg/ASENSING.msg",
+    "/home/shucdong/workspace/xl/imu_parser/imu_msgs:msg/Imu.msg",
+    "/home/shucdong/workspace/xl/imu_parser/imu_msgs:msg/ImuInitial.msg",
+    "/home/shucdong/workspace/xl/imu_parser/imu_msgs:msg/Gnss.msg",
+    "/home/shucdong/workspace/xl/imu_parser/imu_msgs:msg/Imu04.msg",
+    "/home/shucdong/workspace/xl/imu_parser/imu_msgs:msg/Imu0A.msg",
+    "/home/shucdong/workspace/xl/imu_parser/imu_msgs:msg/Imu8B.msg",
+    "/home/shucdong/workspace/xl/imu_parser/imu_msgs:msg/Odom.msg"
+  ]
+}
