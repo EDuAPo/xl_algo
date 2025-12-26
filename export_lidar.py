@@ -25,6 +25,9 @@ except ImportError:
 # 线程通信用的 Stop 标志
 STOP_SIGNAL = "STOP"
 
+# 全局变量：记录已打印的警告，避免刷屏
+_PRINTED_WARNINGS = set()
+
 # ROS PointField 数据类型到 NumPy dtype 的映射
 TYPE_MAP = {
     PointField.INT8: np.dtype('int8'),
@@ -75,7 +78,10 @@ def read_points_from_buffer(msg: PointCloud2) -> np.ndarray:
     # 2. 确保 PointStep 的完整性（可能存在尾部 padding）
     if msg.point_step > current_offset:
         padding_size = msg.point_step - current_offset
-        print(f"⚠️ 注意: 在字段末尾添加 padding 大小 {padding_size} 字节以匹配 point_step {msg.point_step}")
+        warning_msg = f"⚠️ 注意: 在字段末尾添加 padding 大小 {padding_size} 字节以匹配 point_step {msg.point_step}"
+        if warning_msg not in _PRINTED_WARNINGS:
+            print(warning_msg)
+            _PRINTED_WARNINGS.add(warning_msg)
         dtype_list.append((f'_pad_end', np.dtype('uint8'), padding_size))
 
     # 3. 创建最终 dtype

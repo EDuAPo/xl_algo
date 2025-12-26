@@ -24,6 +24,44 @@ from gi.repository import Gst, GLib
 
 Gst.init(None)
 
+# 全局变量：记录已打印的警告，避免刷屏
+_PRINTED_WARNINGS = set()
+
+# 确保标准输出使用UTF-8编码，防止乱码
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
+class ProgressMonitor(threading.Thread):
+    """定期打印所有topic的解码进度，避免多线程打印冲突导致的乱码"""
+    def __init__(self, counters_dict, interval=2.0):
+        super().__init__(daemon=True)
+        self.counters = counters_dict
+        self.interval = interval
+        self.running = True
+        self.lock = threading.Lock()
+
+    def run(self):
+        while self.running:
+            time.sleep(self.interval)
+            self.print_stats()
+    
+    def print_stats(self):
+        with self.lock:
+            status_parts = []
+            # 排序以保持打印顺序一致
+            for topic in sorted(self.counters.keys()):
+                counts = self.counters[topic]
+                # 简化topic名称显示
+                short_name = topic.split('/')[-1]
+                status_parts.append(f"{short_name}: {counts['decoded']}")
+            
+            if status_parts:
+                timestamp = datetime.now().strftime("%H:%M:%S")
+                print(f"[{timestamp}] Progress: {' | '.join(status_parts)}", flush=True)
+
+    def stop(self):
+        self.running = False
+        self.print_stats()
 
 ALL_CAMERA_H265_TOPICS = [
     '/camera/cam_8M_wa_front',
@@ -58,17 +96,23 @@ def create_pipeline(topic_name_sanitized, use_hw_accel="auto"):
         f"appsrc name={topic_name_sanitized} format=time stream-type=stream caps=video/x-h265,stream-format=byte-stream,alignment=au ! "
         f"h265parse config-interval=1 ! {decoder} ! "
         "videoconvert ! video/x-raw,format=BGR ! "
-        "appsink name=sink emit-signals=True max-buffers=1000 drop=True sync=false"
+        "appsink name=sink emit-signals=True max-buffers=10 drop=False sync=false"
     )
     return Gst.parse_launch(pipeline_str)
 
-def save_image_task(filepath, frame):
+def save_image_task(filepath, frame, semaphore):
     """用于在线程池中执行的图像保存任务"""
-    cv2.imwrite(filepath, frame)
+    try:
+        if not cv2.imwrite(filepath, frame):
+            print(f"Error: Failed to write image to {filepath}", file=sys.stderr)
+    except Exception as e:
+        print(f"Exception while writing image {filepath}: {e}", file=sys.stderr)
+    finally:
+        semaphore.release()
 
 def on_new_sample(sink, user_data):
     """appsink的回调函数，现在将保存任务提交给线程池"""
-    output_dir, topic_name, counters, writer_pool = user_data  # 移除timestamps
+    output_dir, topic_name, counters, writer_pool, semaphore = user_data  # 移除timestamps
 
     sample = sink.emit('pull-sample')
     if not sample: return Gst.FlowReturn.OK
@@ -83,7 +127,10 @@ def on_new_sample(sink, user_data):
             timestamp = buf.pts  # 从PTS获取timestamp
             if timestamp == Gst.CLOCK_TIME_NONE:
                 # Fallback: 如果PTS无效，用当前系统时间（纳秒）
-                print(f"\n[{topic_name}] Warning: Invalid PTS, using current time.")
+                warning_msg = f"\n[{topic_name}] Warning: Invalid PTS, using current time."
+                if warning_msg not in _PRINTED_WARNINGS:
+                    print(warning_msg)
+                    _PRINTED_WARNINGS.add(warning_msg)
                 timestamp = int(time.time_ns())  # 需要import time
 
             sec, nsec = timestamp // 1_000_000_000, timestamp % 1_000_000_000
@@ -97,18 +144,21 @@ def on_new_sample(sink, user_data):
             frame = np.ndarray((height, width, 3), buffer=mapinfo.data, dtype=np.uint8)
             
             # 异步写入，必须复制frame
-            writer_pool.submit(save_image_task, filepath, frame.copy())
+            # 获取信号量，限制待处理任务数量，防止内存爆炸
+            semaphore.acquire()
+            writer_pool.submit(save_image_task, filepath, frame.copy(), semaphore)
             
             counters['decoded'] += 1
-            if counters['decoded'] % 1 == 0:
-                print(f"\r[{topic_name}] Decoded frames: {counters['decoded']}", end='')
+            # 移除每帧打印，改由ProgressMonitor统一打印
+            # if counters['decoded'] % 1 == 0:
+            #     print(f"\r[{topic_name}] Decoded frames: {counters['decoded']}", end='')
         except Exception as e:  # 通用捕获，替换原Empty异常
             print(f"\n[{topic_name}] Error in callback: {e}", file=sys.stderr)
         finally:
             buf.unmap(mapinfo)
     return Gst.FlowReturn.OK
 
-def decode_worker(topic_name, data_queue, base_output_dir, hw_accel_flag):
+def decode_worker(topic_name, data_queue, base_output_dir, hw_accel_flag, shared_counters):
     """解码工作线程，现在包含一个用于写入的线程池"""
     topic_name_sanitized = topic_name.replace('/', '_')
     topic_name_sanitized = topic_name_sanitized.lstrip('_')
@@ -118,13 +168,20 @@ def decode_worker(topic_name, data_queue, base_output_dir, hw_accel_flag):
     print(f"[{topic_name}] Worker started. Outputting to: {output_dir}")
 
     main_loop = GLib.MainLoop()
-    counters = {'pushed': 0, 'decoded': 0}  # 移除timestamps队列
-    # 创建一个最多有4个线程的写入池（原24，可根据CPU调整）
-    writer_pool = ThreadPoolExecutor(max_workers=24)
+    
+    # 初始化共享计数器
+    if topic_name not in shared_counters:
+        shared_counters[topic_name] = {'pushed': 0, 'decoded': 0}
+    counters = shared_counters[topic_name]
+    
+    # 创建一个最多有16个线程的写入池（原24，可根据CPU调整）
+    writer_pool = ThreadPoolExecutor(max_workers=16)
+    # 创建信号量限制待写入队列长度，防止内存溢出 (50张图片 * 24MB/张 ≈ 1.2GB)
+    semaphore = threading.BoundedSemaphore(value=50)
     
     pipeline = create_pipeline(topic_name_sanitized, hw_accel_flag)
     
-    user_data_for_callback = (output_dir, topic_name, counters, writer_pool)  # 移除timestamps
+    user_data_for_callback = (output_dir, topic_name, counters, writer_pool, semaphore)  # 移除timestamps
     sink = pipeline.get_by_name('sink')
     sink.connect("new-sample", on_new_sample, user_data_for_callback)
 
@@ -235,6 +292,11 @@ def main():
     args = parser.parse_args()
 
     threads, data_queues = {}, {}
+    shared_counters = {}  # 所有线程共享的计数器字典
+    
+    # 启动进度监控线程
+    monitor = ProgressMonitor(shared_counters, interval=2.0)
+    monitor.start()
 
     print(f"Starting bag file processing with hardware acceleration: {args.hwaccel}")
     # 打印将要按顺序处理的所有bag文件
@@ -275,7 +337,7 @@ def main():
                     q = queue.Queue(maxsize=1000)
                     data_queues[topic_name] = q
                     # 这个线程将存活，直到所有bag文件都被处理完毕
-                    thread = threading.Thread(target=decode_worker, args=(topic_name, q, args.out, args.hwaccel))
+                    thread = threading.Thread(target=decode_worker, args=(topic_name, q, args.out, args.hwaccel, shared_counters))
                     threads[topic_name] = thread
                     thread.start()
 
@@ -292,6 +354,11 @@ def main():
         print("\nEnd of all bag files reached. Signaling worker threads to finalize...")
         for q in data_queues.values(): q.put(None)
         for t in threads.values(): t.join()
+        
+        # 停止监控线程
+        monitor.stop()
+        monitor.join()
+        
         print(f"\nAll decoding threads have finished. Program terminated. Output is in '{args.out}'")
 
 if __name__ == '__main__':

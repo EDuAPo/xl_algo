@@ -7,6 +7,7 @@ import sys
 import json
 import uuid
 import re
+import time
 from collections import defaultdict
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import multiprocessing
@@ -22,8 +23,50 @@ from config.lidar_calibrator import LIDAR_CONFIGS, get_lidar_extrinsics_config_i
 from config.camera_calibrator import get_camera_extrinsics
 
 # 设置进程池的最大工作进程数（默认使用CPU核心数）
-MAX_WORKERS = multiprocessing.cpu_count()
+# 优化：保留2个核心给系统和其他IO操作，避免系统卡死
+MAX_WORKERS = max(1, multiprocessing.cpu_count() - 2)
 # 如果CPU核心数太多，可以手动限制，例如：MAX_WORKERS = 4
+
+def compute_undistort_maps(K, D, is_fish):
+    """
+    预计算去畸变映射表 (优化：避免每帧重复计算)
+    """
+    Knew = K.copy()
+    
+    if is_fish == 1:
+        DIM_target = (2400, 1600)
+        Knew[0, 0] = 0.5 * K[0, 0]
+        Knew[1, 1] = 0.5 * K[1, 1]
+        Knew[0, 2] = DIM_target[0]/2
+        Knew[1, 2] = DIM_target[1]/2
+        map1, map2 = cv2.fisheye.initUndistortRectifyMap(
+            K, D, np.eye(3), Knew, DIM_target, cv2.CV_16SC2
+        )
+        interpolation = cv2.INTER_CUBIC
+    else:
+        DIM_target = (5400, 2260)
+        Knew[0, 0] = 1 * K[0, 0]
+        Knew[1, 1] = 1 * K[1, 1]
+        Knew[0, 2] = DIM_target[0]/2
+        Knew[1, 2] = DIM_target[1]/2
+        map1, map2 = cv2.initUndistortRectifyMap(
+            K, D, np.eye(3), Knew, DIM_target, cv2.CV_16SC2
+        )
+        interpolation = cv2.INTER_LINEAR
+        
+    return map1, map2, Knew, interpolation
+
+def apply_undistort(img, map1, map2, interpolation):
+    """
+    应用去畸变映射 (优化：直接使用预计算的映射表)
+    """
+    undistorted_img = cv2.remap(
+        img, map1, map2, 
+        interpolation=interpolation,
+        borderMode=cv2.BORDER_CONSTANT, 
+        borderValue=(0, 0, 0)
+    )
+    return undistorted_img
 
 def undistort_fish_optimized(img_path, K, D, DIM, is_fish, scale=0.5):
     """鱼眼相机去畸变（保持原有实现）"""
@@ -401,6 +444,7 @@ def process_single_direction(
     try:
         # 判断是否为鱼眼相机
         is_fisheye = not is_8M_camera
+        direction_start_time = time.time()
         
         print(f"\n{'='*50}")
         print(f"[进程 {os.getpid()}] 处理方向: {direction}")
@@ -443,13 +487,21 @@ def process_single_direction(
             print(f"警告: {img_dir} 目录下未找到图片文件")
             return direction_camera_entries
         
+        total_images = len(img_files)
+        print(f"📸 找到 {total_images} 张图片")
+        
         # 获取外参
         extrinsics = get_camera_extrinsics(direction)
         translation = extrinsics["translation"]
         r = extrinsics["rotation"] # xyzw
         rotation = [r[3], r[0], r[1], r[2]] # 转换为 wxyz
         
+        # 预计算去畸变映射表（优化：提取到循环外）
+        is_fish_param = 2 if is_8M_camera else 1
+        map1, map2, K_undistort_base, interpolation = compute_undistort_maps(K_original, D, is_fish_param)
+
         for scale in scales:
+            scale_start_time = time.time()
             print(f"\n--- [进程 {os.getpid()}] 正在处理 scale = {scale} ---")
             
             # 构建输出目录
@@ -465,7 +517,14 @@ def process_single_direction(
             K_undistort = None
             
             # 处理图像文件
+            print(f"\n⏳ 开始处理 {total_images} 张图片...")
+            frame_start_time = time.time()
+            processed_count = 0
+            last_update_time = time.time()
+            update_interval = 0.5  # 每0.5秒更新一次进度，减少IO开销
+            
             for idx, img_file in enumerate(img_files):
+                img_start_time = time.time()
                 img_path = os.path.join(img_dir, img_file)
                 
                 sample_img = cv2.imread(img_path)
@@ -475,15 +534,9 @@ def process_single_direction(
                 h, w = sample_img.shape[:2]
                 DIM = (w, h)
                 
-                # 根据相机类型选择去畸变方法（保持原有逻辑）
-                if is_8M_camera:
-                    undistorted_img, K_undistort = undistort_fish_optimized(
-                        img_path, K_original, D, DIM, 2, scale=scale
-                    )
-                else:
-                    undistorted_img, K_undistort = undistort_fish_optimized(
-                        img_path, K_original, D, DIM, 1, scale=scale
-                    )
+                # 优化：直接应用预计算的映射表
+                undistorted_img = apply_undistort(sample_img, map1, map2, interpolation)
+                K_undistort = K_undistort_base.copy()
                 
                 # 黑边裁剪（可选）
                 if crop_factor > 0:
@@ -503,6 +556,40 @@ def process_single_direction(
                 original_output_path = os.path.join(output_dir, original_output_name)
                 cv2.imwrite(original_output_path, undistorted_img)
                 # print(f"[进程 {os.getpid()}] 已保存去畸变原图: {original_output_path}")
+                
+                # 更新进度统计
+                processed_count += 1
+                current_time = time.time()
+                
+                # 只在达到更新间隔或最后一张时更新进度条（减少IO开销）
+                if (current_time - last_update_time >= update_interval) or (processed_count == total_images):
+                    total_elapsed = current_time - frame_start_time
+                    avg_time_per_img = total_elapsed / processed_count
+                    fps = processed_count / total_elapsed if total_elapsed > 0 else 0
+                    eta_seconds = avg_time_per_img * (total_images - processed_count)
+                    
+                    # 显示进度条
+                    progress_pct = (processed_count / total_images) * 100
+                    bar_length = 30
+                    filled_length = int(bar_length * processed_count / total_images)
+                    bar = '█' * filled_length + '░' * (bar_length - filled_length)
+                    
+                    # 构建进度信息（固定宽度避免跳动）
+                    progress_info = (
+                        f"[进程 {os.getpid()}] "
+                        f"{processed_count:>4}/{total_images:<4} "
+                        f"({progress_pct:>5.1f}%) | "
+                        f"{fps:>5.2f} fps | "
+                        f"ETA: {eta_seconds:>5.1f}s"
+                    )
+                    
+                    # 优化：多进程环境下避免使用 \r，改为每隔一定时间打印一行
+                    # 使用\r回车+清空避免残留，\033[K清空到行尾
+                    # sys.stdout.write(f"\r{progress_info}\033[K")
+                    # sys.stdout.flush()
+                    print(progress_info)
+                    
+                    last_update_time = current_time
                 
                 # 分辨率裁剪（如果启用）
                 if enable_resolution_crop:
@@ -529,13 +616,25 @@ def process_single_direction(
                         res_output_name = f"{filename}_scale_{scale:.2f}_crop_{res_name}{ext}"
                         res_output_path = os.path.join(res_dir, res_output_name)
                         cv2.imwrite(res_output_path, res_cropped_img)
-                        print(f"[进程 {os.getpid()}]   - 已保存{res_name}裁剪图: {res_output_path}")
+                        # print(f"[进程 {os.getpid()}]   - 已保存{res_name}裁剪图: {res_output_path}")
                         
                         # 保存分辨率裁剪后的内参
                         res_k_suffix = "_8M_K_res_cropped.npy" if is_8M_camera else "_3M_K_res_cropped.npy"
                         res_k_path = os.path.join(res_dir, f"camera_{direction}_scale_{scale:.2f}_{res_name}{res_k_suffix}")
                         np.save(res_k_path, K_res_cropped)
-                        print(f"[进程 {os.getpid()}]   - 已保存{res_name}内参: {res_k_path}")
+                        # print(f"[进程 {os.getpid()}]   - 已保存{res_name}内参: {res_k_path}")
+            
+            # 换行结束进度条
+            print()  
+            
+            # 输出scale级别统计
+            scale_elapsed = time.time() - scale_start_time
+            scale_fps = total_images / scale_elapsed if scale_elapsed > 0 else 0
+            print(f"\n✅ Scale {scale} 处理完成:")
+            print(f"   - 处理图片: {total_images} 张")
+            print(f"   - 总耗时: {scale_elapsed:.2f}s")
+            print(f"   - 平均速度: {scale_fps:.2f} fps")
+            print(f"   - 平均每张: {scale_elapsed/total_images:.3f}s")
             
             # 保存基础内参文件
             if K_undistort is not None:
@@ -649,9 +748,22 @@ def process_single_direction(
                         print(f"[进程 {os.getpid()}]   - 已生成{res_name}传感器配置JSON: {res_json_path}")
             
             print(f"--- [进程 {os.getpid()}] scale = {scale} 处理完成 ---")
+        
+        # 输出方向级别的总体统计
+        direction_elapsed = time.time() - direction_start_time
+        total_processed = total_images * len(scales)
+        direction_fps = total_processed / direction_elapsed if direction_elapsed > 0 else 0
+        print(f"\n{'='*50}")
+        print(f"✅ 方向 {direction} 全部处理完成:")
+        print(f"   - 总图片数: {total_images} 张")
+        print(f"   - 处理的scale数: {len(scales)}")
+        print(f"   - 总处理量: {total_processed} 张")
+        print(f"   - 总耗时: {direction_elapsed:.2f}s ({direction_elapsed/60:.2f}分钟)")
+        print(f"   - 平均速度: {direction_fps:.2f} fps")
+        print(f"{'='*50}\n")
             
     except Exception as e:
-        print(f"[进程 {os.getpid()}] 处理 {direction} 方向时出错: {str(e)}")
+        print(f"\n❌ [进程 {os.getpid()}] 处理 {direction} 方向时出错: {str(e)}")
         import traceback
         traceback.print_exc()
     
@@ -670,6 +782,8 @@ def process_all_directions(
     """
     并行处理所有方向文件夹
     """
+    batch_start_time = time.time()
+    
     # 初始化默认分辨率列表
     if target_resolutions is None:
         target_resolutions = [(1920, 1080), (1280, 720), (800, 600)]
@@ -689,7 +803,7 @@ def process_all_directions(
         print("未找到任何包含方向标识的文件夹！")
         return
     
-    print(f"\n总共找到 {len(direction_folders)} 个方向文件夹")
+    print(f"\n🎯 总共找到 {len(direction_folders)} 个方向文件夹")
     
     # 用于存储所有方向的相机条目
     scale_camera_entries = defaultdict(list)
@@ -751,6 +865,16 @@ def process_all_directions(
             )
         else:
             print(f"警告: scale {scale} 没有找到任何相机条目，跳过生成总和JSON")
+    
+    # 输出批处理统计
+    batch_elapsed = time.time() - batch_start_time
+    print(f"\n{'='*60}")
+    print(f"✅ 批量处理完成统计:")
+    print(f"   - 处理方向数: {len(direction_folders)}")
+    print(f"   - Scale数量: {len(scales)}")
+    print(f"   - 总耗时: {batch_elapsed:.2f}s ({batch_elapsed/60:.2f}分钟)")
+    print(f"   - 并行进程数: {MAX_WORKERS}")
+    print(f"{'='*60}\n")
 
 def generate_combined_json(
     output_base, 
@@ -796,6 +920,9 @@ def generate_combined_json(
     print(f"已生成主配置文件: {main_config_path} (基于 {latest_json})")
 
 def main():
+    import time
+    main_start_time = time.time()
+    
     parser = argparse.ArgumentParser(description="图像去畸变批量处理程序（并行版 + 总和JSON）")
     
     # 1. 路径参数 (已修改)
@@ -903,8 +1030,14 @@ def main():
     # 生成主配置文件
     generate_combined_json(output_base=output_path)
     
+    # 输出总体统计
+    total_elapsed = time.time() - main_start_time
     print("\n" + "="*60)
-    print("所有处理已完成！")
+    print("✅ 所有处理已完成！")
+    print(f"📊 总体统计:")
+    print(f"   - 总耗时: {total_elapsed:.2f}s ({total_elapsed/60:.2f}分钟)")
+    print(f"   - 并行进程数: {MAX_WORKERS}")
+    print("="*60)
     print("输出目录结构：")
     print("save/")
     print("  ├─ combined_scales/")

@@ -22,7 +22,7 @@ IMU_MSGS_INSTALL_PATH = os.path.join(CURRENT_DIR, "export_imu", "imu_msgs", "ins
 UNDISTORTION_PARAMS_DIR = os.path.join(CURRENT_DIR, "undistortion", "intrinsic_param")
 VEHICLE_MODEL = "vehicle_000"
 SCALE_MIN = "0.2"
-LOGTIME = "20251209" 
+LOGTIME = "20251219" 
 
 def get_shell_setup_command() -> str:
     """
@@ -77,7 +77,7 @@ def adjust_directories(export_dir: str, undistorted_dir: str):
     """
     步骤 5: 调整目录结构，将 iv_points* 和 ins.json 移动到最终的 undistorted 目录。
     """
-    print("\n--- 🚀 开始执行步骤: 5. 调整目录结构 (移动文件) ---")
+    print("\n--- 🚀 开始执行步骤: [Export Step 5/6] 调整目录结构 (移动文件) ---")
     
     files_to_move = []
     try:
@@ -95,10 +95,10 @@ def adjust_directories(export_dir: str, undistorted_dir: str):
             shutil.move(src, dst)
             print(f"  移动: {filename}")
             
-        print("--- ✅ 步骤 5. 目录调整执行成功。 ---")
+        print("--- ✅ 步骤 [Export Step 5/6] 目录调整执行成功。 ---")
 
     except Exception as e:
-        print(f"--- ❌ 步骤 5. 目录调整执行失败！ ---", file=sys.stderr)
+        print(f"--- ❌ 步骤 [Export Step 5/6] 目录调整执行失败！ ---", file=sys.stderr)
         print(f"错误: {e}", file=sys.stderr)
         sys.exit(1)
 
@@ -163,7 +163,7 @@ def main():
         f"--bag {INPUT_BAG_DIR} "
         f"--out {EXPORT_DIR}"
     )
-    run_command([camera_command_string], "1. 导出 Camera 图像", use_shell=True)
+    run_command([camera_command_string], "[Export Step 1/6] 导出 Camera 图像", use_shell=True)
 
     # --- 2. 导出 Lidar 点云 ---
     lidar_command_string = (
@@ -172,7 +172,7 @@ def main():
         f"--out {EXPORT_DIR} "
         f"--format pcd_binary"
     )
-    run_command([lidar_command_string], "2. 导出 Lidar 点云", use_shell=True)
+    run_command([lidar_command_string], "[Export Step 2/6] 导出 Lidar 点云", use_shell=True)
     
     # --- 3. 导出 IMU/INS 数据 (需要 source) ---
     imu_command_string = (
@@ -181,7 +181,7 @@ def main():
         f"--bag {INPUT_BAG_DIR} "
         f"--out {IMU_JSON_PATH}"
     )
-    run_command([imu_command_string], "3. 导出 IMU/INS 数据 (需 Shell Setup)", use_shell=True)
+    run_command([imu_command_string], "[Export Step 3/6] 导出 IMU/INS 数据 (需 Shell Setup)", use_shell=True)
     
     # --- 4. 图像去畸变 ---
     VEHICLE_MODEL = args.vehicle
@@ -195,7 +195,7 @@ def main():
         f"--scale_min {SCALE_MIN} "
         f"--logtime {LOGTIME}"
     )
-    run_command([undistort_command_string], "4. 图像去畸变", use_shell=True)
+    run_command([undistort_command_string], "[Export Step 4/6] 图像去畸变", use_shell=True)
     
     # --- 5. 调整目录结构 (调用单独的函数) ---
     adjust_directories(EXPORT_DIR, UNDISTORTED_DIR)
@@ -205,9 +205,9 @@ def main():
         f"{sys.executable} {EXTRACT_SAMPLE_SCRIPT} "
         f"{UNDISTORTED_DIR}"
     )
-    run_command([extract_command_string], "6. 提取样本", use_shell=True)
+    run_command([extract_command_string], "[Export Step 6/6] 提取样本", use_shell=True)
 
-    print("\n\n🎉🎉🎉 所有 6 个步骤已按顺序成功执行！ 🎉🎉🎉")
+    print("\n\n🎉🎉🎉 预处理导出阶段完成 (6个内部步骤已执行) 🎉🎉🎉")
     print(f"最终数据位于: {UNDISTORTED_DIR}")
 
 

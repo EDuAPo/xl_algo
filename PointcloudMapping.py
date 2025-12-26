@@ -121,7 +121,7 @@ if __name__ == "__main__":
     
     # 为了演示，这里假设代码和json在同一目录
     process_point_clouds(
-        index_json_path="/home/zgw/Desktop/test00/sample.json", 
-        ins_json_path="/media/zgw/T7/1124/cmy/bag/full_output/113046_113048/undistorted/ins.json", 
-        pcd_base_folder="/media/zgw/T7/1124/cmy/bag/full_output/113046_113048/undistorted/iv_points_front_mid/pcd_binary" 
+        index_json_path="/media/zgw/T7/1221out/094823_095004/undistorted/sample.json", 
+        ins_json_path="/media/zgw/T7/1221out/094823_095004/undistorted/ins.json", 
+        pcd_base_folder="/media/zgw/T7/1221out/094823_095004/undistorted/iv_points_front_mid/pcd_binary" 
     )

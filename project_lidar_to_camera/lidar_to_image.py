@@ -147,10 +147,11 @@ def project_lidar_to_image(pcd_file_path: str, image_file_path: str, lidar_id: s
     points_3d_input = points_camera_valid.astype(np.float64).reshape(-1, 1, 3)
 
     projected_points_undistorted = None
+    a = 1
 
-    if is_fisheye_camera(CAMERA_ID_TO_USE):
+    if a==2:
         print("🔍 检测到鱼眼相机，使用鱼眼投影模型。")
-        projected_points_undistorted, _ = cv2.fisheye.projectPoints(
+        projected_points_undistorted, _ = cv2.projectPoints(
             objectPoints=points_3d_input,
             rvec=rvec,
             tvec=tvec,
