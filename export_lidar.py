@@ -40,6 +40,12 @@ TYPE_MAP = {
     PointField.FLOAT64: np.dtype('float64'),
 }
 
+# 忽略的 Topic 列表
+IGNORE_TOPICS = [
+    "/jinlvlomp/localization/local_map_debug",
+    "/jinlvlomp/localization/match_result_debug"
+]
+
 # --- 【最终优化】直接从消息字节缓冲区读取点云数据 ---
 def read_points_from_buffer(msg: PointCloud2) -> np.ndarray:
     """
@@ -218,6 +224,10 @@ def list_pointcloud2_topics(bag_path):
     topic_types = {}
     for t in metadata.topics_with_message_count:
         if "PointCloud2" in t.topic_metadata.type:
+            # 检查是否在忽略列表中
+            if any(ignore in t.topic_metadata.name for ignore in IGNORE_TOPICS):
+                continue
+                
             topics.append(t.topic_metadata.name)
             topic_types[t.topic_metadata.name] = t.topic_metadata.type
             print(f"Topic: {t.topic_metadata.name}, type: {t.topic_metadata.type}, count: {t.message_count}")
