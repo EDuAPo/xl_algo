@@ -15,10 +15,10 @@ class FolderCompressor:
         self.required_json_files = ['sensor_config_combined_latest.json', 'ins.json', 'sample.json']  # 必需的JSON文件列表
         self.folder_groups = [
             ['camera_cam_3M_front/scale_0.20','camera_cam_3M_rear/scale_0.20','camera_cam_3M_right/scale_0.20','camera_cam_3M_left/scale_0.20'],     # 这些文件夹内的文件数量必须相同
-            ['iv_points_front_left/pcd_binary', 'iv_points_front_right/pcd_binary', 'iv_points_rear_left/pcd_binary','iv_points_front_mid/pcd_binary','iv_points_rear_right/pcd_binary'],  # 这些文件夹内的文件数量必须相同
+            ['iv_points_front_left/pcd_binary', 'iv_points_front_right/pcd_binary', 'iv_points_rear_left/pcd_binary','iv_points_front_mid/pcd_binary','iv_points_rear_right/pcd_binary', 'iv_points_left_mid/pcd_binary', 'iv_points_right_mid/pcd_binary'],  # 这些文件夹内的文件数量必须相同
             ['combined_scales']                   # 单个文件夹也要检查不为空
         ]
-        self.time_sensitive_folders = ['camera_cam_3M_front/scale_0.20','camera_cam_3M_rear/scale_0.20','camera_cam_3M_right/scale_0.20','camera_cam_3M_left/scale_0.20','iv_points_front_left/pcd_binary', 'iv_points_front_right/pcd_binary', 'iv_points_rear_left/pcd_binary','iv_points_front_mid/pcd_binary','iv_points_rear_right/pcd_binary']  # 包含时间信息的文件夹
+        self.time_sensitive_folders = ['camera_cam_3M_front/scale_0.20','camera_cam_3M_rear/scale_0.20','camera_cam_3M_right/scale_0.20','camera_cam_3M_left/scale_0.20','iv_points_front_left/pcd_binary', 'iv_points_front_right/pcd_binary', 'iv_points_rear_left/pcd_binary','iv_points_front_mid/pcd_binary','iv_points_rear_right/pcd_binary', 'iv_points_left_mid/pcd_binary', 'iv_points_right_mid/pcd_binary']  # 包含时间信息的文件夹
         self.min_zip_size_gb = 4  # 最小压缩包大小（GB）
         self.min_zip_size_bytes = self.min_zip_size_gb * 1024 * 1024 * 1024  # 转换为字节
         self.keep_folder_name = "undistorted"  # 需要保留的文件夹名

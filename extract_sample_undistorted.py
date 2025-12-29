@@ -17,7 +17,8 @@ ALL_DIRS = {
     'camera_cam_3M_front', 'camera_cam_3M_left', 'camera_cam_3M_rear',
     'camera_cam_3M_right', 'camera_cam_8M_pt_front', 'camera_cam_8M_wa_front',
     'iv_points_front_left', 'iv_points_front_mid', 'iv_points_front_right',
-    'iv_points_rear_left', 'iv_points_rear_right'
+    'iv_points_rear_left', 'iv_points_rear_right',
+    'iv_points_left_mid', 'iv_points_right_mid'
 }
 
 # 图像目录
