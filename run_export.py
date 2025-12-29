@@ -22,7 +22,7 @@ IMU_MSGS_INSTALL_PATH = os.path.join(CURRENT_DIR, "export_imu", "imu_msgs", "ins
 UNDISTORTION_PARAMS_DIR = os.path.join(CURRENT_DIR, "undistortion", "intrinsic_param")
 VEHICLE_MODEL = "vehicle_000"
 SCALE_MIN = "0.2"
-LOGTIME = "20251219" 
+LOGTIME = "20251223" 
 
 def get_shell_setup_command() -> str:
     """

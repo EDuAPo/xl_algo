@@ -10,10 +10,10 @@ from typing import Dict, List, Tuple
 
 # ------------------- 默认配置 -------------------
 # 保持原有配置，但会被命令行参数覆盖
-DEFAULT_SOURCE_DIRECTORY = "/media/zgw/T7/lidar_camera_calib_1226/left"
-DEFAULT_OUTPUT_ROOT_DIRECTORY = "/media/zgw/T7/lidar_camera_calib_1226/out/"
-DEFAULT_TARGET_START_TIME = "110825"  # 自动更新于 2025-12-26 12:48:45
-DEFAULT_TARGET_END_TIME = "111510"    # 自动更新于 2025-12-26 12:48:45
+DEFAULT_SOURCE_DIRECTORY = "/media/zgw/T7/1223/rosbag2_2025_12_23-16_50_10/"
+DEFAULT_OUTPUT_ROOT_DIRECTORY = "/media/zgw/T7/1223/out/"
+DEFAULT_TARGET_START_TIME = "174231"  # 自动更新于 2025-12-27 02:42:34
+DEFAULT_TARGET_END_TIME = "174400"    # 自动更新于 2025-12-27 02:42:34
 # ----------------------------------------------
 
 def copy_rosbag_files(source_dir: str, output_root_dir: str, start_time_str: str, end_time_str: str, move_mode: bool = False) -> Dict[str, str]:

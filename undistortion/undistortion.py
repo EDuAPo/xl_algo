@@ -897,7 +897,7 @@ def generate_combined_json(
     if not json_files:
         print("在combined_scales目录下未找到任何总和JSON文件")
         return
-    
+
     # 找到最新的scale文件
     # 提取scale值进行比较
     def extract_scale(filename):
@@ -1026,7 +1026,6 @@ def main():
         vehicle_type=vehicle_type, # 传递新增参数
         logtime=logtime # 传递新增参数
     )
-    
     # 生成主配置文件
     generate_combined_json(output_base=output_path)
     
