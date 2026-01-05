@@ -544,7 +544,7 @@ def main():
     print("=" * 60)
     
     # 根目录：包含所有时间格式子文件夹的目录
-    root_dir = "/media/zgw/T7/1226out/"
+    root_dir = "/media/zgw/5211BF7864DFC4FA/1230out/"
     
     # 创建压缩器实例并处理
     compressor = FolderCompressor(root_dir)

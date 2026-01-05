@@ -18,12 +18,12 @@ CHECK_COMPRESS_SCRIPT_PATH = "./check_and_compress.py"  # 检查压缩脚本
 
 # 2. 基础配置
 DEFAULT_VEHICLE = "vehicle_000"
-DEFAULT_MAIN_OUT = "/media/zgw/T7/1223out/"  # 预处理主输出目录
+DEFAULT_MAIN_OUT = "/media/zgw/5211BF7864DFC4FA/1230out/"  # 预处理主输出目录
 TIME_PERIODS_YAML = "./time_peridos.yaml"  # 时间段配置文件
 
 # 3. 新增：移动模式配置
 MOVE_MODE = True  # 是否使用移动模式（默认True，最节省空间）
-MOVE_RECORD_DIR = "/media/zgw/T7/1223out/"  # 移动记录保存目录
+MOVE_RECORD_DIR = "/media/zgw/5211BF7864DFC4FA/1230out/"  # 移动记录保存目录
 
 # 4. 新增：检查压缩功能配置
 SKIP_CHECK_COMPRESS = False  # 是否跳过压缩流程（默认不跳过）
